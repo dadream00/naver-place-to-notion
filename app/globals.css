@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 기본 세팅 */
-* { @apply box-border; }
+/* 기본 스타일 */
+* { box-sizing: border-box; }
 html, body { height: 100%; }
 body { @apply bg-gradient-to-b from-brand-50 to-white text-gray-900 antialiased; }
 
-/* 재사용 컴포넌트 유틸 */
+/* 유틸 */
 .container-hero { @apply max-w-3xl mx-auto px-6 md:px-8; }
 .card { @apply bg-white/90 backdrop-blur rounded-2xl border border-gray-200 shadow-sm; }
 .btn-primary { @apply inline-flex items-center justify-center rounded-xl px-5 py-3 bg-brand-600 text-white hover:bg-brand-700 active:scale-[0.99] transition; }
