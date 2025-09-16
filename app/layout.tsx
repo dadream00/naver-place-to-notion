@@ -1,16 +1,14 @@
+import "./globals.css";
+
 export const metadata = {
   title: "네이버 플레이스 → 노션",
-  description: "스마트플레이스 URL을 넣으면 마크다운을 만들어줘요",
+  description: "스마트플레이스 URL로 마크다운 생성",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ko">
-      <body style={{ fontFamily: "ui-sans-serif, system-ui, Apple SD Gothic Neo, Malgun Gothic, sans-serif" }}>
+      <body className="min-h-screen">
         {children}
       </body>
     </html>
