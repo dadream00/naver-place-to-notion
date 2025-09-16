@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 기본 세팅 */
+* { @apply box-border; }
+html, body { height: 100%; }
+body { @apply bg-gradient-to-b from-brand-50 to-white text-gray-900 antialiased; }
+
+/* 재사용 컴포넌트 유틸 */
+.container-hero { @apply max-w-3xl mx-auto px-6 md:px-8; }
+.card { @apply bg-white/90 backdrop-blur rounded-2xl border border-gray-200 shadow-sm; }
+.btn-primary { @apply inline-flex items-center justify-center rounded-xl px-5 py-3 bg-brand-600 text-white hover:bg-brand-700 active:scale-[0.99] transition; }
+.input { @apply w-full rounded-xl border border-gray-300 px-4 py-3 focus:outline-none focus:ring-4 focus:ring-brand-200 focus:border-brand-400; }
+.badge { @apply inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm text-gray-600 bg-white; }
+.codebox { @apply w-full h-64 rounded-xl border border-gray-200 p-4 font-mono text-sm bg-gray-50; }
