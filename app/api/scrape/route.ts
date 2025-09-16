@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { extractBusinessFromHtml, toMarkdown } from "@/app/lib/parser";
+import { extractBusinessFromHtml, toMarkdown } from "../../lib/parser";
 
 export const dynamic = "force-dynamic";
 
