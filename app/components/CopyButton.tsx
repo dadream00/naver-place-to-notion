@@ -3,7 +3,6 @@ import { useState } from "react";
 
 export default function CopyButton({ text }: { text: string }) {
   const [ok, setOk] = useState<null | boolean>(null);
-
   const onCopy = async () => {
     try {
       await navigator.clipboard.writeText(text);
@@ -14,7 +13,6 @@ export default function CopyButton({ text }: { text: string }) {
       setTimeout(() => setOk(null), 1500);
     }
   };
-
   return (
     <button
       onClick={onCopy}
