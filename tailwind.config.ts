@@ -18,7 +18,7 @@ export default {
           900: "#123f6f"
         }
       }
-    },
+    }
   },
-  plugins: [],
+  plugins: []
 } satisfies Config;
