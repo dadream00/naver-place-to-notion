@@ -11,6 +11,7 @@ export default function HomePage() {
 
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!url.trim()) return;
     setLoading(true);
     setResult(null);
     try {
@@ -29,52 +30,66 @@ export default function HomePage() {
   };
 
   return (
-    <main className="min-h-screen p-6 md:p-10 max-w-3xl mx-auto">
-      <h1 className="text-2xl md:text-3xl font-semibold">네이버 플레이스 → 노션</h1>
-      <p className="text-gray-500 mt-1">스마트플레이스 URL을 넣으면 마크다운을 만들어줘요.</p>
+    <main className="container-hero py-10 md:py-16">
+      {/* 헤더 */}
+      <section className="text-center space-y-3 mb-8">
+        <div className="badge mx-auto">🚀 네이버 플레이스 → 노션</div>
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight">
+          URL 한 번으로 <span className="text-brand-700">마크다운</span> 완성
+        </h1>
+        <p className="text-gray-600">
+          스마트플레이스 주소를 붙여넣고 버튼만 누르세요. 노션에 바로 붙여넣기!
+        </p>
+      </section>
 
-      <form onSubmit={onSubmit} className="mt-6 flex gap-3">
-        <input
-          className="flex-1 border rounded-xl px-4 py-3"
-          placeholder="https://m.place.naver.com/restaurant/xxxxxx"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-        />
-        <button type="submit" disabled={loading}
-          className="rounded-xl px-5 py-3 bg-black text-white disabled:opacity-50">
-          {loading ? "불러오는 중..." : "가져오기"}
-        </button>
-      </form>
+      {/* 폼 카드 */}
+      <section className="card p-5 md:p-6">
+        <form onSubmit={onSubmit} className="flex flex-col md:flex-row gap-3">
+          <input
+            className="input"
+            placeholder="https://m.place.naver.com/restaurant/xxxxxx"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+          />
+          <button type="submit" disabled={loading} className="btn-primary">
+            {loading ? "불러오는 중…" : "가져오기"}
+          </button>
+        </form>
 
-      {result?.error && (
-        <div className="mt-6 p-4 border rounded-xl text-red-600 bg-red-50">{result.error}</div>
-      )}
+        {/* 에러 */}
+        {result?.error && (
+          <div className="mt-4 rounded-xl border border-red-200 bg-red-50 text-red-700 p-4">
+            {result.error}
+          </div>
+        )}
+      </section>
 
+      {/* 결과 카드 */}
       {result?.markdown && (
-        <section className="mt-8 space-y-3">
-          <div className="flex items-center justify-between">
+        <section className="card mt-6 p-5 md:p-6 space-y-4">
+          <div className="flex items-center justify-between gap-3">
             <h2 className="text-xl font-semibold">미리보기</h2>
             <CopyButton text={result.markdown!} />
           </div>
-          <textarea
-            readOnly
-            className="w-full h-64 border rounded-xl p-4 font-mono text-sm"
-            value={result.markdown}
-          />
-          <details className="mt-2">
-            <summary className="cursor-pointer text-gray-600">원본 데이터(JSON) 보기</summary>
-            <pre className="mt-2 p-3 bg-gray-50 rounded-xl overflow-x-auto text-sm">
+
+          <textarea readOnly className="codebox" value={result.markdown} />
+
+          <details className="rounded-xl border p-4 open:bg-gray-50">
+            <summary className="cursor-pointer text-gray-700">원본 데이터(JSON) 보기</summary>
+            <pre className="mt-2 overflow-x-auto text-sm">
               {JSON.stringify(result.data, null, 2)}
             </pre>
           </details>
-          <div className="text-gray-500 text-sm">
-            생성된 마크다운은 <strong>그대로 노션에 붙여넣기</strong> 하면 자동 변환돼요.
-          </div>
+
+          <p className="text-sm text-gray-500">
+            생성된 텍스트를 그대로 <b>노션에 붙여넣기</b> 하면 자동 변환됩니다.
+          </p>
         </section>
       )}
 
-      <footer className="mt-16 text-xs text-gray-400">
-        ※ 주의: 웹사이트 규칙을 지켜요. 구조가 바뀌면 결과가 달라질 수 있어요.
+      {/* 푸터 */}
+      <footer className="text-center text-xs text-gray-500 mt-10">
+        ※ 사이트 약관/로봇정책을 준수하세요. 구조 변경 시 결과가 달라질 수 있습니다.
       </footer>
     </main>
   );
